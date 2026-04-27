@@ -1,0 +1,65 @@
+Class Summary: Jenkins Pipeline Introduction
+Key Topics Covered:
+Jenkins Plugins:
+
+Students learned about essential Jenkins plugins including Build Timeout, Credential Plugin, Git Plugin, GitHub Plugin, Docker, Maven, SonarQube, and Pipeline plugins
+Plugins can be installed via Jenkins UI and require restart for activation
+A trick was shared: use the Pipeline Syntax Generator in Jenkins to create code snippets instead of memorizing syntax
+Pipeline Basics:
+
+Two pipeline types: Pipeline Script (code written directly in Jenkins UI) vs Pipeline from SCM (code stored in GitHub as Jenkinsfile - recommended for version control and tracking changes)
+Two pipeline formats: Scripted (starts with 'node') vs Declarative (starts with 'pipeline') - Declarative offers more customization options
+Pipeline Structure:
+
+pipeline { } - Main wrapper
+agent any - Specifies where the job runs (any available Jenkins agent/node)
+stages { } - Contains multiple stages
+stage('name') { } - Individual stage with specific task
+steps { } - Commands/actions within each stage
+Practical Exercise:
+Students created a pipeline with stages for:
+
+Git Clone (using syntax generator)
+Compile (using shell commands like javac)
+Run/Deploy (using java -jar)
+CI Configuration:
+
+Demonstrated setting up Continuous Integration triggers
+Poll SCM option to check repository changes automatically
+Important Issue Identified:
+Running Java applications directly in pipeline without background execution (nohup or &) causes Jenkins to hang and consume excessive CPU/memory resources.
+
+Next Sessions:
+
+Tomorrow: Master-Slave configuration
+April 29th: Open Q&A session
+April 30th onwards: Docker training begins
+
+
+
+
+
+pipeline {
+agent any
+    stages {
+        stage('Git clone') {
+            steps {
+            git branch: 'main', url: 'https://github.com/DevSecOpsG/helloworldsimplejavaprogram'
+            }
+        }
+        stage('Build'){
+            steps{
+            sh 'javac helloworld.java'
+            }
+        }
+        stage('Run'){
+            steps{
+            sh 'java Simple'
+            }
+        }
+    }
+}
+
+
+
+

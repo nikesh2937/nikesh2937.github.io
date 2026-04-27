@@ -1,0 +1,39 @@
+Jenkins Pipeline Interview Questions & Answers
+1. What are the two types of Jenkins pipelines?
+
+Pipeline Script: Code written directly in Jenkins UI
+Pipeline from SCM: Code stored in version control (GitHub) as Jenkinsfile - recommended for tracking changes
+2. What's the difference between Scripted and Declarative pipelines?
+
+Scripted: Starts with 'node', more flexible but complex
+Declarative: Starts with 'pipeline', offers more structure and customization options
+3. Explain the basic structure of a Declarative pipeline.
+
+pipeline { } - Main wrapper
+agent any - Defines where job runs
+stages { } - Contains all stages
+stage('name') { } - Individual task stage
+steps { } - Actual commands to execute
+4. Name some essential Jenkins plugins.
+Build Timeout, Credential Plugin, Git Plugin, GitHub Plugin, Docker, Maven, SonarQube, Pipeline plugins
+
+5. How do you trigger CI automatically in Jenkins?
+Use Poll SCM option to check repository for changes at scheduled intervals
+
+6. What's the advantage of using Pipeline from SCM over Pipeline Script?
+Version control, change tracking, collaboration, and ability to review code changes
+
+7. What is the Pipeline Syntax Generator?
+A Jenkins tool that helps generate pipeline code snippets without memorizing syntax
+
+8. Why shouldn't you run Java applications directly in Jenkins pipeline?
+It causes Jenkins to hang and consume excessive CPU/memory. Use nohup or & for background execution
+
+9. What does 'agent any' mean?
+The pipeline can run on any available Jenkins agent or node
+
+10. What are typical stages in a basic pipeline?
+Git Clone, Compile, and Run/Deploy
+
+
+
