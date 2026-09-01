@@ -3,771 +3,341 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nikesh Kumar — Cloud DevOps & Security Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<title>Nikesh Kumar — Cloud & Security Architect</title>
+<meta name="description" content="Nikesh Kumar — Cloud & Security Architect. 10+ years designing secure cloud infrastructure, DevSecOps pipelines, VAPT programs, and zero-trust access on Azure and AWS.">
+<meta name="author" content="Nikesh Kumar">
+<link rel="canonical" href="https://nikesh2937.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nikesh Kumar — Cloud & Security Architect">
+<meta property="og:description" content="Designing secure cloud infrastructure, DevSecOps pipelines, and zero-trust access at enterprise scale.">
+<meta property="og:url" content="https://nikesh2937.github.io/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23020810'/><text x='16' y='23' font-size='18' font-family='monospace' fill='%2300a8ff' text-anchor='middle'>N</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Nikesh Kumar","jobTitle":"Cloud & Security Architect","email":"nikesh2937@gmail.com","url":"https://nikesh2937.github.io/","sameAs":["https://linkedin.com/in/nikesh2937"],"address":{"@type":"PostalAddress","addressLocality":"Noida","addressCountry":"IN"},"knowsAbout":["Cloud Architecture","DevSecOps","Kubernetes","Azure","AWS","VAPT","Zero Trust","CI/CD","Infrastructure as Code"]}
+</script>
 <style>
 :root {
-  --bg: #020810;
-  --bg2: #050f1e;
-  --blue: #00a8ff;
-  --blue-dim: #0066aa;
-  --cyan: #00fff7;
-  --green: #00ff9d;
-  --red: #ff3366;
-  --amber: #ffaa00;
-  --text: #c8dff0;
-  --text-dim: #4a7fa5;
-  --border: #0e2840;
-  --glow: 0 0 20px rgba(0,168,255,0.3);
+  --bg: #060a10;
+  --bg2: #0b1220;
+  --panel: #0e1826;
+  --ink: #e6eef7;
+  --ink-dim: #8aa0b8;
+  --ink-faint: #56708c;
+  --line: #16273c;
+  --line2: #1f3550;
+  --accent: #4fd1c5;
+  --accent2: #6ea8ff;
+  --warn: #ffb454;
+  --rad: 14px;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
-  color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 16px;
+  color: var(--ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
   overflow-x: hidden;
-  cursor: crosshair;
+  -webkit-font-smoothing: antialiased;
 }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+a { color: inherit; }
+::selection { background: var(--accent); color:#042028; }
 
-/* SCAN LINE OVERLAY */
+.skip {
+  position:absolute; left:-999px; top:0; z-index:2000;
+  background:var(--accent); color:#04202a; padding:10px 16px; border-radius:0 0 8px 0;
+  font-weight:600;
+}
+.skip:focus { left:0; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+/* subtle blueprint backdrop, one static layer only */
 body::before {
-  content:'';
-  position:fixed;
-  top:0; left:0; right:0; bottom:0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,168,255,0.015) 2px, rgba(0,168,255,0.015) 4px);
-  pointer-events:none;
-  z-index:9999;
-}
-
-/* GRID BACKGROUND */
-body::after {
-  content:'';
-  position:fixed;
-  top:0; left:0; right:0; bottom:0;
-  background-image: linear-gradient(rgba(0,168,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,168,255,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events:none;
-  z-index:0;
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(78,209,197,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78,209,197,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
 }
 
 /* NAV */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  padding: 16px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(2,8,16,0.85);
-  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(6,10,16,0.82);
   backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
-.nav-logo {
-  font-family: 'Orbitron', monospace;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--blue);
-  letter-spacing: 3px;
-}
-.nav-logo span { color: var(--cyan); }
-.nav-links { display:flex; gap:32px; }
+.nav-in { display:flex; align-items:center; justify-content:space-between; height:62px; }
+.brand { font-weight:700; letter-spacing:1px; font-size:16px; }
+.brand b { color: var(--accent); }
+.nav-links { display:flex; gap:28px; }
 .nav-links a {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 12px;
-  color: var(--text-dim);
-  text-decoration: none;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: color 0.2s;
-  position: relative;
+  font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-dim);
+  text-decoration:none; transition:color .18s;
 }
-.nav-links a::after {
-  content:'';
-  position:absolute;
-  bottom:-4px; left:0;
-  width:0; height:1px;
-  background: var(--cyan);
-  transition: width 0.3s;
-}
-.nav-links a:hover { color: var(--cyan); }
-.nav-links a:hover::after { width:100%; }
-.nav-status {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--green);
-  display:flex; align-items:center; gap:8px;
-}
-.status-dot {
-  width:6px; height:6px;
-  border-radius:50%;
-  background: var(--green);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.nav-links a:hover { color: var(--accent); }
+.status { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent);
+  display:flex; align-items:center; gap:8px; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); }
 
 /* HERO */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 48px 80px;
-  position: relative;
-  z-index: 1;
+#hero { position:relative; z-index:1; padding: 92px 0 72px; }
+.hero-grid { display:grid; grid-template-columns: 1.15fr 0.85fr; gap:56px; align-items:center; }
+.eyebrow { font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);
+  letter-spacing:.5px; margin-bottom:20px; }
+.hero-h1 { font-size: clamp(40px, 6vw, 68px); line-height:1.02; font-weight:700; letter-spacing:-1.5px; }
+.hero-h1 .grad {
+  background: linear-gradient(100deg, var(--accent), var(--accent2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
-.hero-tag {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 12px;
-  color: var(--blue);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.2s forwards;
-}
-.hero-tag::before { content:'> '; color: var(--cyan); }
-.hero-name {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(42px, 7vw, 88px);
-  font-weight: 900;
-  line-height: 1;
-  color: #fff;
-  letter-spacing: -1px;
-  margin-bottom: 8px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.4s forwards;
-}
-.hero-name .accent { color: var(--blue); }
-.hero-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: clamp(18px, 2.5vw, 28px);
-  font-weight: 300;
-  color: var(--cyan);
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.6s forwards;
-}
-.hero-desc {
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--text-dim);
-  max-width: 640px;
-  margin-bottom: 48px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.8s forwards;
-}
-.hero-desc strong { color: var(--text); font-weight: 600; }
-.hero-stats {
-  display: flex;
-  gap: 48px;
-  margin-bottom: 48px;
-  opacity: 0;
-  animation: fadeUp 0.6s 1s forwards;
-}
-.stat { text-align: center; }
-.stat-num {
-  font-family: 'Orbitron', monospace;
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--blue);
-  display: block;
-}
-.stat-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.hero-cta {
-  display: flex;
-  gap: 16px;
-  opacity: 0;
-  animation: fadeUp 0.6s 1.2s forwards;
-}
-.btn-primary {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 14px 32px;
-  background: var(--blue);
-  color: #000;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 700;
-  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-  transition: all 0.2s;
-}
-.btn-primary:hover { background: var(--cyan); transform: translateY(-2px); }
-.btn-secondary {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 13px 32px;
-  background: transparent;
-  color: var(--blue);
-  border: 1px solid var(--blue);
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s;
-}
-.btn-secondary:hover { background: rgba(0,168,255,0.1); border-color: var(--cyan); color: var(--cyan); }
+.hero-role { font-size: clamp(17px,2.2vw,22px); color:var(--ink-dim); margin-top:18px; font-weight:500; }
+.hero-lede { color:var(--ink-dim); margin-top:22px; max-width:56ch; font-size:17px; }
+.hero-lede strong { color:var(--ink); font-weight:600; }
+.cta { display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+.btn { text-decoration:none; padding:13px 24px; border-radius:10px; font-weight:600; font-size:15px;
+  transition: transform .15s, background .18s, border-color .18s; display:inline-block; }
+.btn-p { background: var(--accent); color:#042028; }
+.btn-p:hover { transform: translateY(-2px); }
+.btn-s { border:1px solid var(--line2); color:var(--ink); }
+.btn-s:hover { border-color: var(--accent); color:var(--accent); }
 
-/* HERO TERMINAL */
-.hero-terminal {
-  position: absolute;
-  right: 48px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 420px;
-  background: rgba(5,15,30,0.9);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--blue);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 12px;
-  opacity: 0;
-  animation: fadeUp 0.8s 1.4s forwards;
+/* hero diagram card */
+.diagram {
+  background: linear-gradient(180deg, var(--panel), var(--bg2));
+  border:1px solid var(--line2); border-radius: var(--rad);
+  padding: 22px; box-shadow: 0 30px 80px -40px rgba(0,0,0,0.9);
 }
-.terminal-bar {
-  background: var(--bg2);
-  padding: 8px 16px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-}
-.t-dot { width:10px; height:10px; border-radius:50%; }
-.t-dot.r { background:#ff5f57; }
-.t-dot.y { background:#febc2e; }
-.t-dot.g { background:#28c840; }
-.t-title { color: var(--text-dim); font-size:11px; margin-left:auto; letter-spacing:1px; }
-.terminal-body { padding: 16px; line-height: 2; }
-.t-line { display:block; }
-.t-prompt { color: var(--blue); }
-.t-cmd { color: var(--text); }
-.t-out { color: var(--green); }
-.t-out2 { color: var(--amber); }
-.t-out3 { color: var(--text-dim); }
-.t-cursor { display:inline-block; width:8px; height:14px; background:var(--cyan); animation:blink 1s infinite; vertical-align:middle; }
-@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+.diagram .cap { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint);
+  letter-spacing:1px; margin-bottom:16px; text-transform:uppercase; }
+.layer { border:1px solid var(--line2); border-radius:9px; padding:11px 13px; margin-bottom:9px;
+  display:flex; justify-content:space-between; align-items:center; background: rgba(255,255,255,0.015); }
+.layer .l { font-size:14px; font-weight:600; }
+.layer .r { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent); }
+.layer.sec { border-color: rgba(79,209,197,0.4); }
+.layer.sec .r { color: var(--accent); }
+.flowline { text-align:center; color:var(--ink-faint); font-size:11px; line-height:1; margin:2px 0; }
 
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(24px); }
-  to { opacity:1; transform:translateY(0); }
-}
+.hero-stats { display:flex; gap:36px; margin-top:40px; flex-wrap:wrap; }
+.stat .n { font-size:30px; font-weight:700; color:var(--accent); font-family:'Space Grotesk'; }
+.stat .lb { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-faint); }
 
-/* SECTIONS */
-section { padding: 100px 48px; position:relative; z-index:1; }
-.section-header {
-  display:flex; align-items:center; gap:16px;
-  margin-bottom: 64px;
-}
-.section-num {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--blue);
-  letter-spacing: 3px;
-}
-.section-title {
-  font-family: 'Orbitron', monospace;
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.section-line { flex:1; height:1px; background: var(--border); }
-.section-line-accent { width:40px; height:1px; background: var(--blue); }
+/* SECTION */
+section { position:relative; z-index:1; padding: 68px 0; }
+.sec-head { display:flex; align-items:baseline; gap:16px; margin-bottom:38px; }
+.sec-head h2 { font-size:30px; font-weight:700; letter-spacing:-0.5px; }
+.sec-head .tag { font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); }
+.sec-head .rule { flex:1; height:1px; background:var(--line); }
+.sec-intro { color:var(--ink-dim); max-width:64ch; margin:-22px 0 34px; }
 
-/* SKILLS GRID */
-#skills { background: rgba(5,15,30,0.5); }
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.skill-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--blue);
-  padding: 28px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.skill-card::before {
-  content:'';
-  position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: linear-gradient(135deg, rgba(0,168,255,0.05) 0%, transparent 60%);
-  opacity:0;
-  transition: opacity 0.3s;
-}
-.skill-card:hover { border-left-color: var(--cyan); transform:translateX(4px); box-shadow: var(--glow); }
-.skill-card:hover::before { opacity:1; }
-.skill-card.security { border-left-color: var(--red); }
-.skill-card.security:hover { border-left-color: #ff6688; }
-.skill-card.monitoring { border-left-color: var(--green); }
-.skill-card.monitoring:hover { border-left-color: #33ffb0; }
-.skill-card.infra { border-left-color: var(--amber); }
-.skill-card.infra:hover { border-left-color: #ffcc44; }
-.skill-cat {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 8px;
-}
-.skill-card.security .skill-cat { color: var(--red); }
-.skill-card.monitoring .skill-cat { color: var(--green); }
-.skill-card.infra .skill-cat { color: var(--amber); }
-.skill-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
-.tag {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-  color: var(--text-dim);
-  letter-spacing: 1px;
-  transition: all 0.2s;
-}
-.tag:hover { border-color: var(--blue); color: var(--blue); }
-.skill-card.security .tag:hover { border-color: var(--red); color: var(--red); }
-.skill-card.monitoring .tag:hover { border-color: var(--green); color: var(--green); }
-.skill-card.infra .tag:hover { border-color: var(--amber); color: var(--amber); }
+/* ARCHITECTURE PRACTICE */
+.arch-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+.arch-card { background:var(--panel); border:1px solid var(--line); border-radius:var(--rad);
+  padding:22px; transition: border-color .2s, transform .2s; }
+.arch-card:hover { border-color: var(--line2); transform: translateY(-3px); }
+.arch-card h3 { font-size:17px; margin-bottom:8px; }
+.arch-card .k { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent);
+  letter-spacing:1px; margin-bottom:12px; }
+.arch-card p { font-size:14.5px; color:var(--ink-dim); }
 
 /* EXPERIENCE */
-.exp-timeline { max-width: 900px; margin: 0 auto; position:relative; }
-.exp-timeline::before {
-  content:'';
-  position:absolute;
-  left: 0; top:0; bottom:0;
-  width:1px;
-  background: linear-gradient(to bottom, var(--blue), var(--border));
-}
-.exp-item {
-  padding: 0 0 64px 48px;
-  position:relative;
-}
-.exp-item::before {
-  content:'';
-  position:absolute;
-  left:-5px; top:6px;
-  width:11px; height:11px;
-  border:1px solid var(--blue);
-  background: var(--bg);
-  transform: rotate(45deg);
-}
-.exp-item:first-child::before { background: var(--blue); }
-.exp-date {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--blue);
-  letter-spacing: 2px;
-  margin-bottom: 8px;
-}
-.exp-role {
-  font-family: 'Orbitron', monospace;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.exp-company {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 15px;
-  color: var(--cyan);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.exp-bullets { list-style:none; }
-.exp-bullets li {
-  font-size: 15px;
-  color: var(--text-dim);
-  line-height: 1.7;
-  margin-bottom: 8px;
-  padding-left: 20px;
-  position:relative;
-}
-.exp-bullets li::before {
-  content:'›';
-  position:absolute;
-  left:0;
-  color: var(--blue);
-  font-size: 18px;
-}
-.exp-achievements {
-  display:flex; flex-wrap:wrap; gap:10px;
-  margin-top: 16px;
-}
-.achievement {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  padding: 6px 14px;
-  border: 1px solid rgba(0,255,157,0.3);
-  color: var(--green);
-  letter-spacing: 1px;
-}
+.exp { border-left:2px solid var(--line); padding-left:28px; position:relative; }
+.exp-item { padding-bottom:44px; position:relative; }
+.exp-item::before { content:''; position:absolute; left:-35px; top:6px; width:12px; height:12px;
+  border-radius:50%; background:var(--bg); border:2px solid var(--accent); }
+.exp-item:last-child { padding-bottom:0; }
+.exp-date { font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--accent); letter-spacing:.5px; }
+.exp-role { font-size:20px; font-weight:700; margin-top:6px; }
+.exp-co { color:var(--ink-dim); font-size:15px; margin-bottom:14px; }
+.exp-ul { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.exp-ul li { position:relative; padding-left:20px; color:var(--ink-dim); font-size:15px; }
+.exp-ul li::before { content:'▹'; position:absolute; left:0; color:var(--accent); }
+.exp-ul li b { color:var(--ink); font-weight:600; }
+.chips { display:flex; gap:9px; flex-wrap:wrap; margin-top:16px; }
+.chip { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent);
+  border:1px solid rgba(79,209,197,0.28); border-radius:20px; padding:5px 12px; }
 
-/* SECURITY SECTION */
-#security { background: rgba(255,51,102,0.03); }
-.security-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.sec-card {
-  background: rgba(255,51,102,0.05);
-  border: 1px solid rgba(255,51,102,0.2);
-  padding: 24px;
-  transition: all 0.3s;
-}
-.sec-card:hover { border-color: var(--red); box-shadow: 0 0 20px rgba(255,51,102,0.15); }
-.sec-icon {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 20px;
-  color: var(--red);
-  margin-bottom: 12px;
-}
-.sec-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
-}
-.sec-desc {
-  font-size: 14px;
-  color: var(--text-dim);
-  line-height: 1.7;
-}
+/* CASE STUDY */
+.case { display:grid; grid-template-columns: repeat(2,1fr); gap:16px; }
+.case-card { background: linear-gradient(180deg,var(--panel),var(--bg2)); border:1px solid var(--line2);
+  border-radius:var(--rad); padding:26px; }
+.case-card .k { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px;
+  color:var(--accent); margin-bottom:12px; }
+.case-card h3 { font-size:19px; margin-bottom:12px; }
+.case-row { display:flex; gap:8px; font-size:14px; margin-bottom:7px; }
+.case-row .lbl { color:var(--ink-faint); min-width:78px; font-family:'IBM Plex Mono',monospace; font-size:12px; padding-top:2px; }
+.case-row .val { color:var(--ink-dim); }
+.case-row .val b { color:var(--ink); }
 
-/* CERTIFICATIONS */
-.certs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.cert-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 24px;
-  display:flex; gap:20px; align-items:flex-start;
-  transition: all 0.3s;
-}
-.cert-card:hover { border-color: var(--blue); transform:translateY(-4px); }
-.cert-badge {
-  width: 48px; height: 48px;
-  border: 2px solid var(--blue);
-  display:flex; align-items:center; justify-content:center;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--blue);
-  text-align:center;
-  flex-shrink:0;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}
-.cert-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.cert-status {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-.cert-status.active { color: var(--green); }
-.cert-status.progress { color: var(--amber); }
-.cert-status.planned { color: var(--text-dim); }
+/* SKILLS */
+.skills { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; }
+.skill { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px; }
+.skill .k { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint);
+  letter-spacing:.5px; margin-bottom:6px; text-transform:uppercase; }
+.skill .h { font-size:15.5px; font-weight:600; margin-bottom:12px; }
+.tags { display:flex; flex-wrap:wrap; gap:6px; }
+.tag { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim);
+  background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:6px; padding:3px 8px; }
+.skill.hl { border-color: rgba(79,209,197,0.35); }
+.skill.hl .tag { color:var(--accent); border-color:rgba(79,209,197,0.25); }
 
-/* AWARDS */
-.awards-row {
-  display:flex; gap:24px; flex-wrap:wrap;
-  max-width: 900px; margin: 0 auto;
-}
-.award-card {
-  flex:1; min-width:240px;
-  background: linear-gradient(135deg, rgba(255,170,0,0.08), rgba(255,170,0,0.02));
-  border: 1px solid rgba(255,170,0,0.3);
-  padding: 28px;
-  text-align:center;
-  transition: all 0.3s;
-}
-.award-card:hover { border-color: var(--amber); transform:translateY(-4px); box-shadow: 0 0 20px rgba(255,170,0,0.15); }
-.award-icon { font-size:32px; margin-bottom:12px; }
-.award-name {
-  font-family: 'Orbitron', monospace;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--amber);
-  margin-bottom: 4px;
-}
-.award-org {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 2px;
-}
+/* CERTS */
+.certs { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+.cert { display:flex; align-items:center; gap:16px; background:var(--panel);
+  border:1px solid var(--line); border-radius:12px; padding:16px 20px; }
+.cert .badge { width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
+  font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px; flex-shrink:0;
+  background:rgba(79,209,197,0.1); color:var(--accent); border:1px solid rgba(79,209,197,0.3); }
+.cert .name { font-weight:600; font-size:15.5px; }
+.cert .st { font-family:'IBM Plex Mono',monospace; font-size:12px; margin-top:3px; }
+.st.done { color:var(--accent); }
+.st.prog { color:var(--warn); }
+.st.plan { color:var(--ink-faint); }
+.awards { display:flex; gap:14px; margin-top:16px; flex-wrap:wrap; }
+.award { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 20px;
+  display:flex; align-items:center; gap:12px; }
+.award .i { color:var(--warn); font-size:18px; }
+.award .t { font-weight:600; font-size:14.5px; }
+.award .o { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-faint); }
 
 /* CONTACT */
-#contact { background: rgba(5,15,30,0.8); }
-.contact-inner {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align:center;
-}
-.contact-title {
-  font-family: 'Orbitron', monospace;
-  font-size: 36px;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.contact-sub {
-  font-size: 16px;
-  color: var(--text-dim);
-  margin-bottom: 48px;
-  line-height: 1.8;
-}
-.contact-links { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
-.contact-link {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 2px;
-  padding: 14px 28px;
-  border: 1px solid var(--border);
-  color: var(--text-dim);
-  text-decoration:none;
-  display:flex; align-items:center; gap:10px;
-  transition: all 0.3s;
-  text-transform: uppercase;
-}
-.contact-link:hover { border-color: var(--blue); color: var(--blue); background: rgba(0,168,255,0.05); }
-.contact-link .cl-icon { color: var(--blue); font-size:16px; }
+#contact { text-align:center; padding:80px 0; }
+.c-h { font-size: clamp(30px,4.5vw,46px); font-weight:700; letter-spacing:-1px; }
+.c-sub { color:var(--ink-dim); max-width:56ch; margin:18px auto 30px; }
+.c-links { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+.c-link { text-decoration:none; border:1px solid var(--line2); border-radius:10px; padding:12px 20px;
+  font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--ink); transition:border-color .18s,color .18s; }
+.c-link:hover { border-color:var(--accent); color:var(--accent); }
 
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 24px 48px;
-  display:flex; justify-content:space-between; align-items:center;
-  z-index:1; position:relative;
-}
-.footer-copy {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 1px;
-}
-.footer-sig {
-  font-family: 'Orbitron', monospace;
-  font-size: 11px;
-  color: var(--blue-dim);
-  letter-spacing: 2px;
-}
+footer { border-top:1px solid var(--line); padding:26px 0; position:relative; z-index:1; }
+.foot-in { display:flex; justify-content:space-between; align-items:center;
+  font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-faint); }
 
-/* SCROLLBAR */
-::-webkit-scrollbar { width:4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--blue-dim); }
-
-/* RESPONSIVE */
-@media(max-width:900px) {
-  nav { padding: 12px 20px; }
+@media (max-width: 900px) {
   .nav-links { display:none; }
-  section { padding: 60px 20px; }
-  #hero { padding: 100px 20px 60px; }
-  .hero-terminal { display:none; }
-  .hero-stats { gap:24px; }
-  footer { padding: 16px 20px; flex-direction:column; gap:8px; text-align:center; }
+  .hero-grid { grid-template-columns:1fr; gap:36px; }
+  .diagram { order:-1; }
+  .arch-grid, .skills, .case, .certs { grid-template-columns:1fr; }
+  .skills { grid-template-columns: repeat(2,1fr); }
+  .wrap { padding:0 20px; }
+  .foot-in { flex-direction:column; gap:8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  .reveal { opacity:1 !important; transform:none !important; }
 }
 </style>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SDTDJWF3D"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-6SDTDJWF3D');
 </script>
 </head>
 <body>
+<a href="#main" class="skip">Skip to content</a>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">NK<span>.</span>DEV</div>
-  <div class="nav-links">
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#security">Security</a>
-    <a href="#certs">Certifications</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="nav-status">
-    <div class="status-dot"></div>
-    OPEN TO OPPORTUNITIES
+<nav aria-label="Primary">
+  <div class="wrap nav-in">
+    <div class="brand">NIKESH<b>.</b>ARCH</div>
+    <div class="nav-links">
+      <a href="#architecture">Architecture</a>
+      <a href="#experience">Experience</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#skills">Stack</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="status"><span class="dot"></span>SRE @ Adobe · open to architect roles</div>
   </div>
 </nav>
 
+<main id="main">
+
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Cloud DevOps & Security Engineer // Noida, India</div>
-    <div class="hero-name">NIKESH<br><span class="accent">KUMAR</span></div>
-    <div class="hero-title">Cloud · DevSecOps · VAPT · Infrastructure</div>
-    <div class="hero-desc">
-      10+ years in IT. I started by owning everything for clients end to end — servers, DNS, mail, security.
-      Now I do the same at enterprise scale. At <strong>HCL Technologies</strong>, I own cloud infrastructure,
-      VAPT lifecycle, CI/CD pipelines, PAM engineering, and production stability for
-      <strong>six business-critical applications</strong> simultaneously.
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Cloud &amp; Security Architect · Noida, India</div>
+      <h1 class="hero-h1">Nikesh<br><span class="grad">Kumar</span></h1>
+      <p class="hero-role">I design secure cloud platforms — infrastructure, DevSecOps, and zero-trust access — that hold up under audit and at scale.</p>
+      <p class="hero-lede">
+        10+ years in IT, 5+ in cloud. Currently an <strong>SRE at Adobe</strong>, driving
+        large-scale infrastructure migrations on Airflow, Kubernetes and Azure. Before that,
+        at <strong>HCL Technologies</strong>, I owned the security and delivery design for
+        <strong>six business-critical applications</strong> across every environment — with
+        <strong>zero SLA breaches</strong> to date.
+      </p>
+      <div class="cta">
+        <a href="mailto:nikesh2937@gmail.com" class="btn btn-p">Get in touch</a>
+        <a href="https://linkedin.com/in/nikesh2937" target="_blank" rel="noopener" class="btn btn-s">LinkedIn</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">10+</div><div class="lb">years in IT</div></div>
+        <div class="stat"><div class="n">6</div><div class="lb">apps architected</div></div>
+        <div class="stat"><div class="n">0</div><div class="lb">SLA breaches</div></div>
+        <div class="stat"><div class="n">40%</div><div class="lb">faster deploys</div></div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years IT</span></div>
-      <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Years Cloud</span></div>
-      <div class="stat"><span class="stat-num">6</span><span class="stat-label">Apps Owned</span></div>
-      <div class="stat"><span class="stat-num">0</span><span class="stat-label">SLA Breaches</span></div>
-    </div>
-    <div class="hero-cta">
-      <a href="mailto:nikesh2937@gmail.com" class="btn-primary">Contact Me</a>
-      <a href="https://linkedin.com/in/nikesh2937" target="_blank" class="btn-secondary">LinkedIn Profile</a>
-    </div>
-  </div>
 
-  <div class="hero-terminal">
-    <div class="terminal-bar">
-      <div class="t-dot r"></div>
-      <div class="t-dot y"></div>
-      <div class="t-dot g"></div>
-      <span class="t-title">production ~ bash</span>
-    </div>
-    <div class="terminal-body">
-      <span class="t-line"><span class="t-prompt">nikesh@prod:~$</span> <span class="t-cmd">kubectl get nodes</span></span>
-      <span class="t-line t-out">node-pool-1   Ready   5d</span>
-      <span class="t-line t-out">node-pool-2   Ready   5d</span>
-      <span class="t-line t-out">node-pool-3   Ready   5d</span>
-      <span class="t-line"> </span>
-      <span class="t-line"><span class="t-prompt">nikesh@prod:~$</span> <span class="t-cmd">terraform apply</span></span>
-      <span class="t-line t-out2">Plan: 3 to add, 1 to change</span>
-      <span class="t-line t-out">Apply complete! Resources: 3 added</span>
-      <span class="t-line"> </span>
-      <span class="t-line"><span class="t-prompt">nikesh@prod:~$</span> <span class="t-cmd">vapt-scan --env prod</span></span>
-      <span class="t-line t-out">Critical: 0 | High: 0 | Medium: 2</span>
-      <span class="t-line t-out">SLA status: COMPLIANT ✓</span>
-      <span class="t-line"> </span>
-      <span class="t-line"><span class="t-prompt">nikesh@prod:~$</span> <span class="t-cursor"></span></span>
+    <div class="diagram" aria-label="Reference architecture: secure delivery platform">
+      <div class="cap">Secure delivery platform · reference design</div>
+      <div class="layer"><span class="l">Developers &amp; PRs</span><span class="r">source</span></div>
+      <div class="flowline">↓</div>
+      <div class="layer sec"><span class="l">CI/CD + SAST / DAST gate</span><span class="r">shift-left</span></div>
+      <div class="flowline">↓</div>
+      <div class="layer"><span class="l">IaC · Terraform / Ansible / Helm</span><span class="r">policy-as-code</span></div>
+      <div class="flowline">↓</div>
+      <div class="layer sec"><span class="l">AKS / EKS · RBAC · secrets</span><span class="r">zero-trust</span></div>
+      <div class="flowline">↓</div>
+      <div class="layer"><span class="l">Prod · PAM · MFA · observability</span><span class="r">VAPT-clean</span></div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header">
-    <span class="section-num">01</span>
-    <div class="section-line-accent"></div>
-    <h2 class="section-title">Core Skills</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-cat">Cloud Platforms</div>
-      <div class="skill-name">AWS & Azure</div>
-      <div class="skill-tags">
-        <span class="tag">EC2</span><span class="tag">EKS</span><span class="tag">Lambda</span>
-        <span class="tag">RDS</span><span class="tag">S3</span><span class="tag">VPC</span>
-        <span class="tag">IAM</span><span class="tag">CloudWatch</span>
-        <span class="tag">AKS</span><span class="tag">ACR</span><span class="tag">Azure DevOps</span>
+<!-- ARCHITECTURE PRACTICE -->
+<section id="architecture">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">// 01</span><h2>Architecture practice</h2><span class="rule"></span></div>
+    <p class="sec-intro">What I design — not just operate. These are the decisions that shape a platform before a single pipeline runs.</p>
+    <div class="arch-grid">
+      <div class="arch-card reveal">
+        <div class="k mono">SECURE SDLC</div>
+        <h3>Shift-left by design</h3>
+        <p>Threat-model the pipeline first: SAST/DAST gates, dependency and secret scanning, and remediation SLAs built into the flow rather than bolted on after audit.</p>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-cat">DevOps & CI/CD</div>
-      <div class="skill-name">Pipeline Engineering</div>
-      <div class="skill-tags">
-        <span class="tag">Jenkins</span><span class="tag">GitLab CI</span><span class="tag">ArgoCD</span>
-        <span class="tag">GitHub Actions</span><span class="tag">SonarQube</span>
-        <span class="tag">PR Validation</span><span class="tag">Rollback Planning</span>
+      <div class="arch-card reveal">
+        <div class="k mono">ZERO TRUST</div>
+        <h3>Access architecture</h3>
+        <p>PAM, MFA, ZTNA, RBAC and least-privilege IAM designed as one identity model across environments — so access is provable, not assumed.</p>
       </div>
-    </div>
-    <div class="skill-card security">
-      <div class="skill-cat">Security & Compliance</div>
-      <div class="skill-name">DevSecOps</div>
-      <div class="skill-tags">
-        <span class="tag">VAPT</span><span class="tag">SAST</span><span class="tag">DAST</span>
-        <span class="tag">PCI</span><span class="tag">PAM</span><span class="tag">ZTNA</span>
-        <span class="tag">MFA</span><span class="tag">SSL/TLS</span><span class="tag">RBAC</span>
-        <span class="tag">CNAPP</span><span class="tag">SonarQube Remediation</span>
+      <div class="arch-card reveal">
+        <div class="k mono">PLATFORM</div>
+        <h3>Cloud landing zones</h3>
+        <p>Azure and AWS foundations: network segmentation, secrets management, and container orchestration (AKS/EKS) laid out for isolation, scale, and clean blast radius.</p>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-cat">Infrastructure as Code</div>
-      <div class="skill-name">IaC & Automation</div>
-      <div class="skill-tags">
-        <span class="tag">Terraform</span><span class="tag">Ansible</span>
-        <span class="tag">CloudFormation</span><span class="tag">Helm</span>
-        <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Shell</span>
+      <div class="arch-card reveal">
+        <div class="k mono">POLICY-AS-CODE</div>
+        <h3>Repeatable infrastructure</h3>
+        <p>Terraform, Ansible and Helm modules with guardrails encoded in code — drift-controlled, reviewable, and audit-ready by default.</p>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-cat">Containers & Orchestration</div>
-      <div class="skill-name">Kubernetes</div>
-      <div class="skill-tags">
-        <span class="tag">Docker</span><span class="tag">EKS</span><span class="tag">AKS</span>
-        <span class="tag">Helm Charts</span><span class="tag">Pod Autoscaling</span>
-        <span class="tag">Container Registry</span>
+      <div class="arch-card reveal">
+        <div class="k mono">COMPLIANCE</div>
+        <h3>Audit-ready posture</h3>
+        <p>PCI, VA/VIT, CNAPP and SonarQube cycles designed into the delivery cadence, with RCAs and evidence prepared for client security teams ahead of ask.</p>
       </div>
-    </div>
-    <div class="skill-card monitoring">
-      <div class="skill-cat">Monitoring & Observability</div>
-      <div class="skill-name">Observability Stack</div>
-      <div class="skill-tags">
-        <span class="tag">Prometheus</span><span class="tag">Grafana</span>
-        <span class="tag">Datadog</span><span class="tag">ELK Stack</span>
-        <span class="tag">CloudWatch</span><span class="tag">MTTR Reduction</span>
-      </div>
-    </div>
-    <div class="skill-card infra">
-      <div class="skill-cat">OS & Server Management</div>
-      <div class="skill-name">Linux & Windows</div>
-      <div class="skill-tags">
-        <span class="tag">RHEL</span><span class="tag">Ubuntu</span><span class="tag">Windows Server</span>
-        <span class="tag">Server Hardening</span><span class="tag">DR Readiness</span>
-        <span class="tag">CMDB</span>
-      </div>
-    </div>
-    <div class="skill-card infra">
-      <div class="skill-cat">Identity & Access</div>
-      <div class="skill-name">PAM & Access Mgmt</div>
-      <div class="skill-tags">
-        <span class="tag">PAM Onboarding</span><span class="tag">SSH/RDP</span>
-        <span class="tag">Firewall Whitelisting</span><span class="tag">ZTNA</span>
-        <span class="tag">Service Accounts</span><span class="tag">RITM Tickets</span>
+      <div class="arch-card reveal">
+        <div class="k mono">RESILIENCE</div>
+        <h3>Reliability &amp; DR</h3>
+        <p>Observability (Prometheus, Grafana, Datadog), autoscaling, DR readiness and L2/L3 incident design that keeps six critical apps inside SLA.</p>
       </div>
     </div>
   </div>
@@ -775,158 +345,161 @@ footer {
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <div class="section-line-accent"></div>
-    <h2 class="section-title">Experience</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="exp-timeline">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">// 02</span><h2>Experience</h2><span class="rule"></span></div>
+    <div class="exp">
+      <div class="exp-item reveal">
+        <div class="exp-date mono">MAY 2026 — PRESENT</div>
+        <div class="exp-role">Site Reliability Engineer (SRE)</div>
+        <div class="exp-co">Adobe · Noida</div>
+        <ul class="exp-ul">
+          <li>Drive <b>large-scale infrastructure migrations</b> across multi-tier environments — modernizing orchestration on <b>Airflow</b>, containerized workloads on <b>Kubernetes</b>, and <b>Azure</b> platform components.</li>
+          <li>Own reliability of production pipelines through migration — sequencing P0–P3 workstreams, cutting over safely, and holding delivery timelines with zero unplanned downtime.</li>
+          <li>Automate provisioning and configuration with <b>Ansible, Python and CI/CD</b>, keeping migrated infrastructure reproducible and drift-controlled.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip mono">Airflow migrations</span>
+          <span class="chip mono">Kubernetes</span>
+          <span class="chip mono">Azure</span>
+        </div>
+      </div>
 
-    <div class="exp-item">
-      <div class="exp-date">AUG 2021 — PRESENT</div>
-      <div class="exp-role">Associate Manager</div>
-      <div class="exp-company">HCL Technologies Ltd · Noida</div>
-      <ul class="exp-bullets">
-        <li>Own end-to-end cloud infrastructure, security compliance, VAPT, CI/CD, and production stability for 6 enterprise applications — iKnow, iLeadsense, iEvolve, O2C, BCBS RI — across Dev, SIT, UAT, and Production simultaneously.</li>
-        <li>Primary owner of VAPT lifecycle (SAST & DAST) — remediating high/critical vulnerabilities under strict SLA timelines including TLS misconfigurations, insecure headers, EOL software, Python/.NET vulnerabilities.</li>
-        <li>Led PCI compliance, SonarQube/Legit, VA/VIT, CNAPP security audit cycles — preparing RCAs, audit evidence, and validation reports for client security teams. Zero SLA breaches across all quarters.</li>
-        <li>Managed Azure IaaS/PaaS, Windows Server, Linux (RHEL/Ubuntu) workloads, PAM onboarding, ZTNA, MFA, SSL certificate lifecycle, and L2/L3 production incident management.</li>
-        <li>Rebuilt CI/CD pipelines from scratch using Jenkins, GitLab CI, ArgoCD — reducing deployment time by 40%.</li>
-        <li>Mentored team of 5–8 cloud and DevOps engineers. Single point of contact for enterprise clients including BCBS RI.</li>
-      </ul>
-      <div class="exp-achievements">
-        <span class="achievement">↓ 40% Deployment Time</span>
-        <span class="achievement">↑ 30% Latency Improvement</span>
-        <span class="achievement">0 SLA Breaches</span>
-        <span class="achievement">Game Changer 2023</span>
+      <div class="exp-item reveal">
+        <div class="exp-date mono">AUG 2021 — MAY 2026</div>
+        <div class="exp-role">Associate Manager · Cloud &amp; Security</div>
+        <div class="exp-co">HCL Technologies Ltd · Noida</div>
+        <ul class="exp-ul">
+          <li>Own the security and delivery <b>architecture</b> for 6 enterprise applications — iKnow, iLeadsense, iEvolve, O2C, BCBS RI — across Dev, SIT, UAT and Production.</li>
+          <li>Designed and run the <b>VAPT lifecycle</b> (SAST &amp; DAST), remediating high/critical findings under strict SLAs: TLS misconfig, insecure headers, EOL software, Python/.NET CVEs.</li>
+          <li>Led <b>PCI, VA/VIT, CNAPP and SonarQube/Legit</b> audit cycles — RCAs and evidence prepared for client security teams, zero SLA breaches across all quarters.</li>
+          <li>Architected <b>Azure IaaS/PaaS</b> workloads, PAM onboarding, ZTNA, MFA and SSL lifecycle across Windows and Linux (RHEL/Ubuntu) estates.</li>
+          <li>Rebuilt CI/CD from scratch — Jenkins, GitLab CI, ArgoCD — <b>cutting deployment time 40%</b> and improving latency ~30%.</li>
+          <li>Mentor 5–8 cloud/DevOps engineers; single point of contact for enterprise clients including BCBS RI.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip mono">↓ 40% deploy time</span>
+          <span class="chip mono">0 SLA breaches</span>
+          <span class="chip mono">Game Changer 2023</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date mono">FEB 2017 — JUL 2021</div>
+        <div class="exp-role">Senior Full-Stack &amp; Infrastructure Engineer</div>
+        <div class="exp-co">Wildnet Technologies Pvt. Ltd · Delhi NCR</div>
+        <ul class="exp-ul">
+          <li>Ran 10–15 client projects at once, owning the full stack — app, Linux servers, DNS, mail, SSL and security.</li>
+          <li>Tuned Apache/Nginx, PHP, MySQL, Redis and CDN environments for <b>35% faster page loads</b>; automated ops with Bash/cron.</li>
+          <li>Handled DNS (A/CNAME/MX/TXT), nameserver migrations and mail (cPanel/Postfix) with zero email downtime.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date mono">AUG 2014 — JAN 2017</div>
+        <div class="exp-role">Full-Stack &amp; Web Infrastructure Engineer</div>
+        <div class="exp-co">Growth TechSoft Pvt. Ltd · India</div>
+        <ul class="exp-ul">
+          <li>Built and shipped WordPress/PHP apps end to end — hosting, DNS, mail and SSL.</li>
+          <li>Built the Linux, network and security foundation that underpins all my cloud and DevSecOps work today.</li>
+        </ul>
       </div>
     </div>
-
-    <div class="exp-item">
-      <div class="exp-date">FEB 2017 — JUL 2021</div>
-      <div class="exp-role">Senior Full Stack Developer & Infrastructure Engineer</div>
-      <div class="exp-company">Wildnet Technologies Pvt. Ltd · Delhi NCR</div>
-      <ul class="exp-bullets">
-        <li>Managed 10–15 client projects simultaneously — owning the full stack from HTML/CSS/JS and WordPress/PHP backend to Linux server setup, DNS configuration, mail server, SSL, and security.</li>
-        <li>Administered Apache/Nginx, PHP, MySQL hosting environments with Bash/cron automation, Redis caching, CDN integration — achieving 35% faster page load times.</li>
-        <li>Configured DNS records (A, CNAME, MX, TXT), nameserver migrations, and mail server (cPanel, Postfix) for all clients — zero email downtime during transitions.</li>
-        <li>Implemented SSL/TLS installation, firewall rules, malware scanning, and WordPress security hardening across all environments.</li>
-      </ul>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">AUG 2014 — JAN 2017</div>
-      <div class="exp-role">Full Stack Developer & Web Infrastructure Engineer</div>
-      <div class="exp-company">Growth TechSoft Pvt. Ltd · India</div>
-      <ul class="exp-bullets">
-        <li>Built and deployed WordPress/PHP applications end-to-end — development, VPS/shared hosting, DNS zones, mail server config, and SSL installation.</li>
-        <li>Developed foundational Linux server administration, network, and security skills that underpin all current cloud and DevSecOps work.</li>
-      </ul>
-    </div>
-
   </div>
 </section>
 
-<!-- SECURITY -->
-<section id="security">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <div class="section-line-accent"></div>
-    <h2 class="section-title">Security Ownership</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="security-grid">
-    <div class="sec-card">
-      <div class="sec-icon">[VAPT]</div>
-      <div class="sec-title">VAPT Lifecycle</div>
-      <div class="sec-desc">Primary owner of full VAPT — SAST and DAST — across multiple enterprise applications. Vulnerabilities found, remediated, documented under strict SLA deadlines.</div>
-    </div>
-    <div class="sec-card">
-      <div class="sec-icon">[PCI]</div>
-      <div class="sec-title">PCI & Compliance</div>
-      <div class="sec-desc">PCI compliance, VA/VIT, CNAPP, SonarQube/Legit audit cycles. RCA documents and audit evidence prepared for client security teams. Zero SLA breaches.</div>
-    </div>
-    <div class="sec-card">
-      <div class="sec-icon">[PAM]</div>
-      <div class="sec-title">PAM & Identity</div>
-      <div class="sec-desc">PAM onboarding, SSH/RDP access, ZTNA, MFA, VDI configuration. Firewall whitelisting and service account lifecycle across multiple client environments.</div>
-    </div>
-    <div class="sec-card">
-      <div class="sec-icon">[SSL]</div>
-      <div class="sec-title">SSL/TLS Lifecycle</div>
-      <div class="sec-desc">End-to-end SSL certificate management — CSR generation, installation, renewal, TLS version validation, and remediation across all production environments.</div>
-    </div>
-    <div class="sec-card">
-      <div class="sec-icon">[L2/L3]</div>
-      <div class="sec-title">Incident Management</div>
-      <div class="sec-desc">L2/L3 production incident ownership — API failures, DB connectivity, certificate expiry, environment outages. Full RCA with cross-team coordination.</div>
-    </div>
-    <div class="sec-card">
-      <div class="sec-icon">[IAM]</div>
-      <div class="sec-title">Cloud Security Posture</div>
-      <div class="sec-desc">IAM least-privilege policies, RBAC, VPC network segmentation, secrets management, security group configurations. Audit-ready at any point.</div>
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">// 03</span><h2>Case studies</h2><span class="rule"></span></div>
+    <p class="sec-intro">Two representative outcomes, framed the way I approach every problem: context, design, result.</p>
+    <div class="case">
+      <div class="case-card reveal">
+        <div class="k mono">DEVSECOPS · PIPELINE REBUILD</div>
+        <h3>From ad-hoc deploys to a gated pipeline</h3>
+        <div class="case-row"><span class="lbl">Problem</span><span class="val">Manual, slow releases with no consistent security gate across six apps.</span></div>
+        <div class="case-row"><span class="lbl">Design</span><span class="val">Rebuilt CI/CD on <b>Jenkins, GitLab CI and ArgoCD</b> with SAST/DAST gates, PR validation and rollback paths.</span></div>
+        <div class="case-row"><span class="lbl">Result</span><span class="val"><b>40% faster deployments</b>, security checks enforced every release, and audit evidence generated automatically.</span></div>
+      </div>
+      <div class="case-card reveal">
+        <div class="k mono">SECURITY · VAPT PROGRAM</div>
+        <h3>A VAPT program that never breaches SLA</h3>
+        <div class="case-row"><span class="lbl">Problem</span><span class="val">High/critical vulnerabilities across enterprise apps with strict client remediation SLAs.</span></div>
+        <div class="case-row"><span class="lbl">Design</span><span class="val">Owned end-to-end <b>SAST/DAST</b> lifecycle with prioritized remediation, TLS/header hardening and EOL removal, wired into <b>PCI/CNAPP</b> cycles.</span></div>
+        <div class="case-row"><span class="lbl">Result</span><span class="val"><b>Zero SLA breaches</b> across all quarters, with RCAs and evidence ready for client security teams on demand.</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">// 04</span><h2>Stack</h2><span class="rule"></span></div>
+    <div class="skills">
+      <div class="skill hl reveal">
+        <div class="k mono">Security &amp; Compliance</div><div class="h">DevSecOps</div>
+        <div class="tags"><span class="tag">VAPT</span><span class="tag">SAST</span><span class="tag">DAST</span><span class="tag">PCI</span><span class="tag">PAM</span><span class="tag">ZTNA</span><span class="tag">MFA</span><span class="tag">RBAC</span><span class="tag">CNAPP</span><span class="tag">SSL/TLS</span></div>
+      </div>
+      <div class="skill reveal">
+        <div class="k mono">Cloud Platforms</div><div class="h">Azure &amp; AWS</div>
+        <div class="tags"><span class="tag">AKS</span><span class="tag">ACR</span><span class="tag">Azure DevOps</span><span class="tag">EC2</span><span class="tag">EKS</span><span class="tag">Lambda</span><span class="tag">RDS</span><span class="tag">S3</span><span class="tag">VPC</span><span class="tag">IAM</span></div>
+      </div>
+      <div class="skill reveal">
+        <div class="k mono">CI/CD</div><div class="h">Pipeline engineering</div>
+        <div class="tags"><span class="tag">Jenkins</span><span class="tag">GitLab CI</span><span class="tag">ArgoCD</span><span class="tag">GitHub Actions</span><span class="tag">SonarQube</span><span class="tag">Rollback</span></div>
+      </div>
+      <div class="skill reveal">
+        <div class="k mono">Infrastructure as Code</div><div class="h">IaC &amp; automation</div>
+        <div class="tags"><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Helm</span><span class="tag">CloudFormation</span><span class="tag">Python</span><span class="tag">Bash</span></div>
+      </div>
+      <div class="skill reveal">
+        <div class="k mono">Containers</div><div class="h">Kubernetes</div>
+        <div class="tags"><span class="tag">Docker</span><span class="tag">AKS</span><span class="tag">EKS</span><span class="tag">Helm</span><span class="tag">Autoscaling</span><span class="tag">Registry</span></div>
+      </div>
+      <div class="skill reveal">
+        <div class="k mono">Observability</div><div class="h">Monitoring</div>
+        <div class="tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Datadog</span><span class="tag">ELK</span><span class="tag">CloudWatch</span><span class="tag">MTTR</span></div>
+      </div>
+      <div class="skill reveal">
+        <div class="k mono">Systems</div><div class="h">Linux &amp; Windows</div>
+        <div class="tags"><span class="tag">RHEL</span><span class="tag">Ubuntu</span><span class="tag">Win Server</span><span class="tag">Hardening</span><span class="tag">DR</span><span class="tag">CMDB</span></div>
+      </div>
+      <div class="skill reveal">
+        <div class="k mono">Identity &amp; Access</div><div class="h">Access management</div>
+        <div class="tags"><span class="tag">PAM</span><span class="tag">SSH/RDP</span><span class="tag">Firewall</span><span class="tag">ZTNA</span><span class="tag">Service Accts</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
 <section id="certs">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <div class="section-line-accent"></div>
-    <h2 class="section-title">Certifications</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="certs-grid">
-    <div class="cert-card">
-      <div class="cert-badge">AWS</div>
-      <div>
-        <div class="cert-name">AWS Solutions Architect Associate</div>
-        <div class="cert-status progress">⟳ IN PROGRESS — MAY 2026</div>
+  <div class="wrap">
+    <div class="sec-head"><span class="tag mono">// 05</span><h2>Certifications</h2><span class="rule"></span></div>
+    <div class="certs">
+      <div class="cert reveal">
+        <div class="badge">AZ</div>
+        <div><div class="name">Microsoft Azure Fundamentals (AZ-900)</div><div class="st done mono">✓ Certified</div></div>
+      </div>
+      <div class="cert reveal">
+        <div class="badge">GCP</div>
+        <div><div class="name">Google Gen AI Leader</div><div class="st done mono">✓ Certified · 2026</div></div>
+      </div>
+      <div class="cert reveal">
+        <div class="badge">K8s</div>
+        <div><div class="name">Certified Kubernetes Administrator (CKA)</div><div class="st prog mono">⟳ In progress · Sep–Oct 2026</div></div>
+      </div>
+      <div class="cert reveal">
+        <div class="badge">AWS</div>
+        <div><div class="name">AWS Solutions Architect Associate</div><div class="st plan mono">◌ Planned</div></div>
       </div>
     </div>
-    <div class="cert-card">
-      <div class="cert-badge">SEC</div>
-      <div>
-        <div class="cert-name">AWS Security Specialty</div>
-        <div class="cert-status planned">◌ PLANNED — AUG 2026</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-badge">GCP</div>
-      <div>
-        <div class="cert-name">Google Gen AI Leader</div>
-        <div class="cert-status active">✓ CERTIFIED — 2026</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-badge">AZ</div>
-      <div>
-        <div class="cert-name">Microsoft Azure Fundamentals</div>
-        <div class="cert-status active">✓ CERTIFIED — AZ-900</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- AWARDS -->
-  <div style="margin-top:64px;">
-    <div class="section-header" style="margin-bottom:32px;">
-      <span class="section-num">05</span>
-      <div class="section-line-accent"></div>
-      <h2 class="section-title">Awards</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="awards-row">
-      <div class="award-card">
-        <div class="award-icon">★</div>
-        <div class="award-name">Game Changer Award</div>
-        <div class="award-org">HCL Technologies · 2023</div>
-      </div>
-      <div class="award-card">
-        <div class="award-icon">◈</div>
-        <div class="award-name">Face of the Month</div>
-        <div class="award-org">HCL Technologies · 2022</div>
+    <div style="margin-top:44px;">
+      <div class="sec-head"><span class="tag mono">// 06</span><h2>Awards</h2><span class="rule"></span></div>
+      <div class="awards">
+        <div class="award reveal"><span class="i">★</span><div><div class="t">Game Changer Award</div><div class="o mono">HCL Technologies · 2023</div></div></div>
+        <div class="award reveal"><span class="i">◈</span><div><div class="t">Face of the Month</div><div class="o mono">HCL Technologies · 2022</div></div></div>
       </div>
     </div>
   </div>
@@ -934,58 +507,37 @@ footer {
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="contact-inner">
-    <div class="contact-title">LET'S CONNECT</div>
-    <div class="contact-sub">
-      Open to senior Cloud DevOps, Cloud Security, and DevSecOps roles in Noida / Delhi NCR or remote.
-      I respond fast.
-    </div>
-    <div class="contact-links">
-      <a href="mailto:nikesh2937@gmail.com" class="contact-link">
-        <span class="cl-icon">@</span> nikesh2937@gmail.com
-      </a>
-      <a href="https://linkedin.com/in/nikesh2937" target="_blank" class="contact-link">
-        <span class="cl-icon">in</span> linkedin.com/in/nikesh2937
-      </a>
-      <a href="tel:+919996990965" class="contact-link">
-        <span class="cl-icon">#</span> +91 9996990965
-      </a>
+  <div class="wrap">
+    <div class="c-h">Let's build something secure.</div>
+    <p class="c-sub">Open to Cloud Architect, Security Architect and senior DevSecOps roles — Noida / Delhi NCR or remote. I reply fast.</p>
+    <div class="c-links">
+      <a class="c-link" href="mailto:nikesh2937@gmail.com">nikesh2937@gmail.com</a>
+      <a class="c-link" href="https://linkedin.com/in/nikesh2937" target="_blank" rel="noopener">linkedin.com/in/nikesh2937</a>
+      <a class="c-link" href="tel:+919996990965">+91 99969 90965</a>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <div class="footer-copy">© 2026 Nikesh Kumar · Cloud DevOps & Security Engineer · Noida, India</div>
-  <div class="footer-sig">NK.DEV // SYSTEM ONLINE</div>
+  <div class="wrap foot-in">
+    <span>© 2026 Nikesh Kumar · Cloud &amp; Security Architect · Noida, India</span>
+    <span>NIKESH.ARCH</span>
+  </div>
 </footer>
 
 <script>
-// Intersection observer for fade-in sections
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='none'; io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(16px)';
+    el.style.transition='opacity .5s ease, transform .5s ease';
+    io.observe(el);
   });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.skill-card, .exp-item, .sec-card, .cert-card, .award-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(el);
-});
-
-// Typing effect for terminal — already rendered statically for performance
-// Mouse parallax on hero terminal
-const terminal = document.querySelector('.hero-terminal');
-document.addEventListener('mousemove', (e) => {
-  if(!terminal) return;
-  const x = (e.clientX / window.innerWidth - 0.5) * 10;
-  const y = (e.clientY / window.innerHeight - 0.5) * 6;
-  terminal.style.transform = `translateY(-50%) translate(${x}px, ${y}px)`;
-});
+}
 </script>
 </body>
 </html>
